@@ -1,0 +1,104 @@
+:root {
+  --color-primary: #00a19e;
+  --color-secondary: #3373b0;
+  --color-accent: #bed4e9;
+  --color-black: #000;
+  --color-white: #fff;
+}
+
+.container {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 400px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 30px 8px gray;
+}
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.signUpForm input {
+  padding: 8px 15px;
+  font-size: 18px;
+  border-radius: 5px;
+  outline: 2px solid gray;
+  margin-bottom: 8px;
+  margin-top: 15px;
+  border: none;
+  width: 100%;
+}
+
+.signUpForm input[type="submit"] {
+  outline: none;
+  background-color: var(--color-primary);
+  color: var(--color-accent);
+  border: 2px solid transparent;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--color-primary);
+    color: var(--color-primary);
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-primary);
+  }
+}
+
+fieldset {
+  border-radius: 8px;
+  border: 2px solid #058c96;
+}
+
+legend {
+  text-align: center;
+  font-weight: 800;
+  font-size: 25px;
+  color: var(--color-primary);
+}
+
+.signUpForm .error {
+  outline: 2px solid red;
+  &.span {
+    outline: none;
+    color: red;
+    font-weight: 600;
+    font-size: 12px;
+  }
+}
+
+.signUpForm .loginText {
+  text-align: center;
+  font-size: 18px;
+  line-height: 30px;
+  a {
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .wrapper {
+    width: 80%;
+  }
+}
+@media (max-width: 767.98px) {
+  .wrapper {
+    width: 90%;
+    padding: 10px;
+  }
+  fieldset {
+    width: 100%;
+  }
+}
