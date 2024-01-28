@@ -48,10 +48,8 @@ export default function Registration() {
   }
 
   const onSubmit = async (data) => {
-    let res = await createUserWithEmailAndPassword(data.email, data.password);
-    await updateProfile({ displayName: data.name });
-    if (res.user.accessToken) {
-      toast.success("Sign up successful!", {
+    if (data.password !== data.confirmPass) {
+      toast.error("Password doesn't match!", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,
@@ -62,6 +60,22 @@ export default function Registration() {
         theme: "colored",
         toastId: "",
       });
+    } else {
+      let res = await createUserWithEmailAndPassword(data.email, data.password);
+      await updateProfile({ displayName: data.name });
+      if (res.user.accessToken) {
+        toast.success("Sign up successful!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          toastId: "",
+        });
+      }
     }
   };
 
