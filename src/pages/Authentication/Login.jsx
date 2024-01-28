@@ -45,6 +45,25 @@ export default function Login() {
     return <Navigate to={"/"} />;
   }
 
+  //handling sign in with google *********************
+
+  const handleGoogleSignIn = async () => {
+    const res = await signInWithGoogle();
+    if (res.user.accessToken) {
+      toast.success("logged in successfully", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        toastId: "",
+      });
+    }
+  };
+  //handling sign in with email and pass *********************
   //handling sign in with email and pass *********************
   const onSubmit = (data) => {
     console.log(data);
@@ -94,10 +113,7 @@ export default function Login() {
               </p>
             </form>
             <div className={classes.socialBtns}>
-              <div
-                onClick={() => signInWithGoogle()}
-                className={classes.googleBtn}
-              >
+              <div onClick={handleGoogleSignIn} className={classes.googleBtn}>
                 <img
                   width={"36px"}
                   height={"36px"}
