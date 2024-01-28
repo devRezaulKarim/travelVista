@@ -26,7 +26,7 @@ export default function Login() {
 
   const errorMsg = "*This field is required";
 
-  //handling the user *********************
+  //handling the user login *********************
   if (googleLoading || githubLoading) {
     return <Loading />;
   }

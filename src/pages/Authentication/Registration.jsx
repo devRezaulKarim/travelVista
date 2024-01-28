@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import classes from "./Registration.module.css";
 import { useForm } from "react-hook-form";
 
 import { toast } from "react-toastify";
 import Navbar from "../../components/navbar/Navbar";
-import axios from "axios";
+import auth from "../../firebase.init";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import Loading from "../Loading/Loading";
+import { useEffect } from "react";
 
 export default function Registration() {
   const {
@@ -17,27 +23,46 @@ export default function Registration() {
     },
   } = useForm();
 
+  const [createUserWithEmailAndPassword, user, signUpLoading, signUpError] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, error] = useUpdateProfile(auth);
+
   const errorMsg = "*This field is required";
-  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    delete data.confirmPass;
+  useEffect(() => {
+    console.log(user);
+  });
+  //handling the user sign up*********************
+  if (signUpLoading || updating) {
+    return <Loading />;
+  }
 
-    axios
-      .post("http://localhost:8800/api/auth/register", {
-        ...data,
-        username: data.name + Date.now(),
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          reset();
-          navigate("/");
-          console.log(res);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+  if (signUpError || error) {
+    toast.error("something went wrong", {
+      toastId: "",
+    });
+  }
+
+  if (user) {
+    return <Navigate to={"/"} />;
+  }
+
+  const onSubmit = async (data) => {
+    let res = await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    if (res.user.accessToken) {
+      toast.success("Sign up successful!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        toastId: "",
       });
+    }
   };
 
   return (
