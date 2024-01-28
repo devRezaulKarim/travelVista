@@ -1,11 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import classes from "./Login.module.css";
 import { useForm } from "react-hook-form";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithGithub,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import Navbar from "../../components/navbar/Navbar";
 import auth from "../../firebase.init";
+import Loading from "../Loading/Loading";
 
 export default function Login() {
   const {
@@ -17,10 +21,29 @@ export default function Login() {
   } = useForm();
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
+  const [signInWithGithub, githubUser, githubLoading, githubError] =
+    useSignInWithGithub(auth);
 
   const errorMsg = "*This field is required";
 
   //handling the user *********************
+  if (googleLoading || githubLoading) {
+    return <Loading />;
+  }
+  if (googleError || githubError) {
+    if (googleError.message.includes("closed-by-user")) {
+      toast.error("You refuse to login", {
+        toastId: "",
+      });
+    } else {
+      toast.error("something went wrong", {
+        toastId: "",
+      });
+    }
+  }
+  if (googleUser || githubUser) {
+    return <Navigate to={"/"} />;
+  }
 
   //handling sign in with email and pass *********************
   const onSubmit = (data) => {
@@ -83,7 +106,10 @@ export default function Login() {
                 />
                 <button>Continue with google</button>
               </div>
-              <div className={classes.githubBtn}>
+              <div
+                onClick={() => signInWithGithub()}
+                className={classes.githubBtn}
+              >
                 <img
                   width={"42px"}
                   height={"36px"}
