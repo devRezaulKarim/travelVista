@@ -1,2 +1,2 @@
 login by jwt, show user info, edit the user info, 
-implement search, pass data by router state, show the search query on hotels page.
+implement search, pass data by router state, show the search query on hotels page by using debounce.

@@ -2,9 +2,10 @@
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import classes from "./Login.module.css";
 import { useForm } from "react-hook-form";
-
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import Navbar from "../../components/navbar/Navbar";
+import auth from "../../firebase.init";
 
 export default function Login() {
   const {
@@ -14,6 +15,8 @@ export default function Login() {
       errors: { email, password },
     },
   } = useForm();
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
 
   const errorMsg = "*This field is required";
 
@@ -68,7 +71,10 @@ export default function Login() {
               </p>
             </form>
             <div className={classes.socialBtns}>
-              <div className={classes.googleBtn}>
+              <div
+                onClick={() => signInWithGoogle()}
+                className={classes.googleBtn}
+              >
                 <img
                   width={"36px"}
                   height={"36px"}
