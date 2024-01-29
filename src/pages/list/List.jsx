@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
+import Loading from "../Loading/Loading";
 
 const List = () => {
   const location = useLocation();
@@ -19,10 +20,23 @@ const List = () => {
     async function getHotels() {
       const res = await fetch("https://rezauls-json-server.vercel.app/hotels");
       const data = await res.json();
-      setHotels(data);
+
+      if (destination) {
+        setHotels(
+          data.filter((d) =>
+            d.location.toLowerCase().includes(destination.toLowerCase())
+          )
+        );
+      } else {
+        setHotels(data);
+      }
     }
     getHotels();
-  });
+  }, [destination]);
+
+  if (hotels.length < 1) {
+    return <Loading />;
+  }
 
   return (
     <div>
