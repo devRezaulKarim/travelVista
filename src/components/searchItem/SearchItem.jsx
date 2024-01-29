@@ -1,15 +1,12 @@
+/* eslint-disable react/prop-types */
 import "./searchItem.css";
 
-const SearchItem = () => {
+const SearchItem = ({ hotel }) => {
   return (
     <div className="searchItem">
-      <img
-        src="https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1"
-        alt=""
-        className="siImg"
-      />
+      <img src={hotel.imageURL} alt="" className="siImg" />
       <div className="siDesc">
-        <h1 className="siTitle">Tower Street Apartments</h1>
+        <h1 className="siTitle">{hotel.hotelName}</h1>
         <span className="siDistance">500m from center</span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">

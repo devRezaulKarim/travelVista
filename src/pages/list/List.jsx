@@ -2,7 +2,7 @@ import "./list.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
@@ -13,6 +13,16 @@ const List = () => {
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+  const [hotels, setHotels] = useState([]);
+
+  useEffect(() => {
+    async function getHotels() {
+      const res = await fetch("https://rezauls-json-server.vercel.app/hotels");
+      const data = await res.json();
+      setHotels(data);
+    }
+    getHotels();
+  });
 
   return (
     <div>
@@ -21,15 +31,9 @@ const List = () => {
       <div className="listContainer">
         <div className="listWrapper">
           <div className="listResult">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            {hotels.map((hotel) => (
+              <SearchItem key={hotel.id} hotel={hotel} />
+            ))}
           </div>
 
           {/* search section */}
