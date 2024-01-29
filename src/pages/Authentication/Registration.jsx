@@ -29,9 +29,7 @@ export default function Registration() {
 
   const errorMsg = "*This field is required";
 
-  useEffect(() => {
-    console.log(user);
-  });
+
   //handling the user sign up*********************
   if (signUpLoading || updating) {
     return <Loading />;

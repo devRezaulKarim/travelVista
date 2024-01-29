@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import classes from "./Login.module.css";
 import { useForm } from "react-hook-form";
 import {
+  useSignInWithEmailAndPassword,
   useSignInWithGithub,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -19,29 +20,56 @@ export default function Login() {
       errors: { email, password },
     },
   } = useForm();
+  const errorMsg = "*This field is required";
+
+  //react firebase hooks contents ***********************
+
+  const [signInWithEmailAndPassword, emailUser, emailLoading, emailError] =
+    useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
   const [signInWithGithub, githubUser, githubLoading, githubError] =
     useSignInWithGithub(auth);
 
-  const errorMsg = "*This field is required";
-
   //handling the user login *********************
-  if (googleLoading || githubLoading) {
+  const successToastMsg = () =>
+    toast.success("logged in successfully", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      toastId: "",
+    });
+
+  if (googleLoading || githubLoading || emailLoading) {
     return <Loading />;
   }
-  if (googleError || githubError) {
-    if (googleError.message.includes("closed-by-user")) {
+  if (googleError || githubError || emailError) {
+    if (emailError.message.includes("invalid-credential")) {
+      toast.error("Password wrong!", {
+        autoClose: 2000,
+        theme: "colored",
+        toastId: "",
+      });
+    } else if (googleError?.message?.includes("closed-by-user")) {
       toast.error("You refuse to login", {
+        autoClose: 2000,
+        theme: "colored",
         toastId: "",
       });
     } else {
       toast.error("something went wrong", {
+        autoClose: 2000,
+        theme: "colored",
         toastId: "",
       });
     }
   }
-  if (googleUser || githubUser) {
+  if (googleUser || githubUser || emailUser) {
     return <Navigate to={"/"} />;
   }
 
@@ -50,23 +78,18 @@ export default function Login() {
   const handleGoogleSignIn = async () => {
     const res = await signInWithGoogle();
     if (res.user.accessToken) {
-      toast.success("logged in successfully", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        toastId: "",
-      });
+      successToastMsg();
     }
   };
   //handling sign in with email and pass *********************
   //handling sign in with email and pass *********************
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const res = await signInWithEmailAndPassword(data.email, data.password);
+    if (res) {
+      if (res.user.accessToken) {
+        successToastMsg();
+      }
+    }
   };
 
   return (

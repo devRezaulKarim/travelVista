@@ -23,9 +23,9 @@ const Navbar = () => {
               </div>
             )
           ) : (
-            <Link to={"/"} className="navButton">
-              Home
-            </Link>
+            <div className="navButton">
+              <Link to={"/"}>Home</Link>
+            </div>
           )}
 
           {user && (
@@ -35,12 +35,16 @@ const Navbar = () => {
           )}
           {user && (
             <div className="userImg">
-              <img
-                width={36}
-                height={36}
-                src={user.photoURL}
-                alt={user.displayName.slice(0, 2)}
-              />
+              {user.photoURL ? (
+                <img
+                  width={36}
+                  height={36}
+                  src={user.photoURL}
+                  alt={user.displayName.slice(0, 2)}
+                />
+              ) : (
+                <h2>{user.displayName.slice(0, 2)}</h2>
+              )}
             </div>
           )}
         </div>
