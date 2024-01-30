@@ -1,5 +1,5 @@
 # Travel Vista - A Booking Site
-# [Travel Vista](https://travel-vista-rkz.netlify.app/)
+# Visit: [Travel Vista](https://travel-vista-rkz.netlify.app/)
 
 Welcome to Travel Vista, a React-based booking site where users can explore and book hotels. This project utilizes various technologies and features to enhance the user experience.
 
