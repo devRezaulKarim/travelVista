@@ -1,4 +1,5 @@
 # Travel Vista - A Booking Site
+# [Travel Vista](https://travel-vista-rkz.netlify.app/)
 
 Welcome to Travel Vista, a React-based booking site where users can explore and book hotels. This project utilizes various technologies and features to enhance the user experience.
 
@@ -43,10 +44,10 @@ npm install
 4. Run the application:
 
 ```bash
-npm start
+npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to view the app in your browser.
+Visit [http://localhost:5173/](http://localhost:5173/) to view the app in your browser.
 
 ## Contributing
 
