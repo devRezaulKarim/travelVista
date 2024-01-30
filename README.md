@@ -1,6 +1,3 @@
-Certainly! Below is a complete `README.md` file for your Travel Vista React project:
-
-```markdown
 # Travel Vista - A Booking Site
 
 Welcome to Travel Vista, a React-based booking site where users can explore and book hotels. This project utilizes various technologies and features to enhance the user experience.
