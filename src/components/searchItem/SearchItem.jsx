@@ -4,7 +4,7 @@ import "./searchItem.css";
 const SearchItem = ({ hotel }) => {
   return (
     <div className="searchItem">
-      <img src={hotel.imageURL} alt="" className="siImg" />
+      <img src={hotel.thumbnail} alt="" className="siImg" />
       <div className="siDesc">
         <h1 className="siTitle">{hotel.hotelName}</h1>
         <span className="siDistance">{hotel.location}</span>
