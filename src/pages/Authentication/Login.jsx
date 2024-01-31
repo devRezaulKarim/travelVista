@@ -49,13 +49,16 @@ export default function Login() {
     return <Loading />;
   }
   if (googleError || githubError || emailError) {
-    if (emailError.message.includes("invalid-credential")) {
+    if (emailError?.message?.includes("invalid-credential")) {
       toast.error("Password wrong!", {
         autoClose: 2000,
         theme: "colored",
         toastId: "",
       });
-    } else if (googleError?.message?.includes("closed-by-user")) {
+    } else if (
+      googleError?.message?.includes("closed-by-user") ||
+      githubError?.message?.includes("closed-by-user")
+    ) {
       toast.error("You refuse to login", {
         autoClose: 2000,
         theme: "colored",
