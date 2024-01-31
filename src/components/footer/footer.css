@@ -21,3 +21,8 @@
   color: #084e4d;
   cursor: pointer;
 }
+.fText {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #084e4d;
+}

@@ -13,7 +13,7 @@ const Navbar = () => {
     <div className={`${location !== "/" ? "navbarBg navbar" : "navbar"} `}>
       <div className="navContainer">
         <span onClick={() => navigate("/")} className="logo">
-          TravelVista
+          Travel Vista
         </span>
         <div className="navItems">
           {location === "/" ? (
