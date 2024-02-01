@@ -44,6 +44,7 @@ const List = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setDestination(searchLocation.current.value);
+    searchLocation.current.value = "";
   };
 
   return (
