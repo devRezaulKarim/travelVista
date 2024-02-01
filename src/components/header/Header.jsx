@@ -74,7 +74,10 @@ const Header = ({ type }) => {
                   world of possibilities. Where will your next adventure take
                   you?
                 </p>
-                <button className="headerBtn">
+                <button
+                  onClick={() => navigate("/login")}
+                  className="headerBtn"
+                >
                   Book Now
                   <FontAwesomeIcon icon={faHouseCircleCheck} />
                 </button>
