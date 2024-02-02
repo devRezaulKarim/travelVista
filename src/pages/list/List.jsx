@@ -16,11 +16,13 @@ const List = () => {
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
   const [hotels, setHotels] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchLocation = useRef();
 
   useEffect(() => {
     async function getHotels() {
+      setIsLoading(true);
       const res = await fetch("https://rezauls-json-server.vercel.app/hotels");
       const data = await res.json();
 
@@ -33,11 +35,12 @@ const List = () => {
       } else {
         setHotels(data);
       }
+      setIsLoading(false);
     }
     getHotels();
   }, [destination]);
 
-  if (hotels.length < 1) {
+  if (isLoading) {
     return <Loading />;
   }
 
@@ -59,9 +62,14 @@ const List = () => {
       <div className="listContainer">
         <div className="listWrapper">
           <div className="listResult">
-            {hotels.map((hotel) => (
-              <SearchItem key={hotel.id} hotel={hotel} />
-            ))}
+            {hotels.length > 0 ? (
+              hotels.map((hotel) => <SearchItem key={hotel.id} hotel={hotel} />)
+            ) : (
+              <h3 className="notAvailableMsg">
+                There is no hotel available in
+                <span>&#34;{destination}&#34; !!</span>
+              </h3>
+            )}
           </div>
 
           {/* search section */}
@@ -73,6 +81,7 @@ const List = () => {
                 <input
                   ref={searchLocation}
                   placeholder={destination || "Enter your destination"}
+                  defaultValue={destination}
                   type="text"
                 />
               </div>

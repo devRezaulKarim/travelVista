@@ -71,13 +71,28 @@
 
 .listSearch > button {
   padding: 10px;
-  background-color: #0071c2;
+  background-color: rgb(0, 161, 158);
+  color: #fff;
   border: none;
   width: 100%;
   font-weight: 500;
   cursor: pointer;
+  font-size: 20px;
+  border-radius: 4px;
 }
 
 .listResult {
   flex: 3;
+}
+
+.notAvailableMsg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: red;
+
+  span {
+    font-size: 32px;
+  }
 }
