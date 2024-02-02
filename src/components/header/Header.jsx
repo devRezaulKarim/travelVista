@@ -50,7 +50,7 @@ const Header = ({ type }) => {
     navigate("/hotels", { state: { destination, date, options } });
   };
 
-  const seeData = (item) => {
+  const handleDateSelection = (item) => {
     setDate([item.range1]);
   };
 
@@ -134,7 +134,7 @@ const Header = ({ type }) => {
                 {openDate && (
                   <DateRange
                     editableDateInputs={true}
-                    onChange={(item) => seeData(item)}
+                    onChange={(item) => handleDateSelection(item)}
                     moveRangeOnFirstSelection={false}
                     ranges={date}
                     className="date"

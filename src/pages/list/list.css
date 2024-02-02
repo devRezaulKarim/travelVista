@@ -19,11 +19,11 @@
   position: sticky;
   top: 10px;
   height: max-content;
+  color: #fff;
 }
 
 .lsTitle {
   font-size: 20px;
-  color: #fff;
   margin-bottom: 10px;
 }
 
@@ -47,6 +47,7 @@
   height: 30px;
   padding: 5px;
   background-color: white;
+  color: #808080;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -60,7 +61,6 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  color: #fff;
   font-size: 12px;
 }
 
@@ -72,7 +72,6 @@
 .listSearch > button {
   padding: 10px;
   background-color: #0071c2;
-  color: white;
   border: none;
   width: 100%;
   font-weight: 500;

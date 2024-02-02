@@ -41,6 +41,11 @@ const List = () => {
     return <Loading />;
   }
 
+  const handleDateSelection = (item) => {
+    setDate([item.range1]);
+    setOpenDate(false);
+  };
+
   const handleSearch = (e) => {
     e.preventDefault();
     setDestination(searchLocation.current.value);
@@ -67,21 +72,27 @@ const List = () => {
                 <label>Destination</label>
                 <input
                   ref={searchLocation}
-                  placeholder={destination}
+                  placeholder={destination || "Enter your destination"}
                   type="text"
                 />
               </div>
               <div className="lsItem">
                 <label>Check-in Date</label>
-                <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                  date[0].startDate,
+                <span
+                  className="selectedDate"
+                  onClick={() => setOpenDate(!openDate)}
+                >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
+                  date[0].endDate,
                   "MM/dd/yyyy"
-                )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+                )}`}</span>
                 {openDate && (
                   <DateRange
-                    onChange={(item) => setDate([item.selection])}
-                    minDate={new Date()}
+                    editableDateInputs={true}
+                    onChange={(item) => handleDateSelection(item)}
+                    moveRangeOnFirstSelection={false}
                     ranges={date}
+                    className="date"
+                    minDate={new Date()}
                   />
                 )}
               </div>
