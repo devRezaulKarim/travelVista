@@ -52,6 +52,7 @@ const Header = ({ type }) => {
 
   const handleDateSelection = (item) => {
     setDate([item.range1]);
+    setOpenDate(false);
   };
 
   return (
