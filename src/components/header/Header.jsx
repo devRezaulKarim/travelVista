@@ -113,6 +113,7 @@ const Header = ({ type }) => {
                 <span>Airport taxis</span>
               </div>
             </div>
+
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faLocationDot} className="headerIcon" />
@@ -216,8 +217,13 @@ const Header = ({ type }) => {
                     </div>
                   </div>
                 )}
+                <div className="smallDevicesSearchButton">
+                  <button className="headerBtn" onClick={handleSearch}>
+                    Search
+                  </button>
+                </div>
               </div>
-              <div className="headerSearchItem">
+              <div className="headerSearchItem largeDeviceSearchButton">
                 <button className="headerBtn" onClick={handleSearch}>
                   Search
                 </button>

@@ -75,3 +75,9 @@
     transform: translateY(-5px);
   }
 }
+
+@media screen and (max-width: 991.98px) {
+  .navContainer {
+    padding-inline: 16px;
+  }
+}

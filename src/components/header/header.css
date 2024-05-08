@@ -98,6 +98,10 @@
   }
 }
 
+.smallDevicesSearchButton {
+  display: none;
+}
+
 .headerSearchInput {
   border: none;
   outline: none;
@@ -151,4 +155,33 @@
 
 .optionCounterButton:disabled {
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 991.98px) {
+  .hero {
+    padding-inline: 16px;
+  }
+  .headerList {
+    flex-wrap: wrap;
+    margin-bottom: 0;
+  }
+  .headerSearch {
+    display: block;
+    position: static;
+    height: auto;
+    padding: 10px;
+    margin: 0 auto;
+    width: 90%;
+    position: relative;
+  }
+  .headerSearchItem {
+    margin-block: 16px;
+  }
+  .smallDevicesSearchButton {
+    display: block;
+    margin-left: auto;
+  }
+  .largeDeviceSearchButton {
+    display: none;
+  }
 }
