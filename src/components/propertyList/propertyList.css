@@ -1,4 +1,4 @@
-.pList{
+.pList {
   width: 100%;
   max-width: 1024px;
   display: flex;
@@ -6,25 +6,38 @@
   gap: 20px;
 }
 
-.pListItem{
-  flex:1;
+.pListItem {
+  flex: 1;
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
 }
 
-.pListImg{
+.pListImg {
   width: 100%;
   height: 150px;
   object-fit: cover;
 }
 
-.pListTitles>h1{
+.pListTitles > h1 {
   font-size: 18px;
   color: #444;
 }
 
-.pListTitles>h2{
+.pListTitles > h2 {
   font-size: 14px;
   font-weight: 300;
+}
+
+@media screen and (max-width: 991.98px) {
+  .pList {
+    display: block;
+    padding-inline: 16px;
+  }
+  .pListItem {
+    margin-block: 16px;
+    border: 2px solid #084e4d;
+    border-radius: 4px;
+    padding: 8px;
+  }
 }
