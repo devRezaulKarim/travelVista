@@ -29,3 +29,15 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 991.98px) {
+  .mail {
+    padding-inline: 16px;
+  }
+  .mailInputContainer {
+    text-align: center;
+  }
+  .mailInputContainer > button {
+    margin-top: 8px;
+  }
+}
