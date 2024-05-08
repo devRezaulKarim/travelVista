@@ -29,7 +29,7 @@
   font-weight: 300;
 }
 
-@media screen and (max-width: 991.98px) {
+@media screen and (max-width: 767.98px) {
   .pList {
     display: block;
     padding-inline: 16px;
