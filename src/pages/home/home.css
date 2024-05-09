@@ -51,8 +51,13 @@ video {
   left: 0;
   z-index: -1;
 }
-
 @media screen and (max-width: 991.98px) {
+  .homeContainer {
+    padding-inline: 16px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
   .homeTitle {
     width: 90%;
     &::after {

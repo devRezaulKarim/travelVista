@@ -161,6 +161,12 @@
   .hero {
     padding-inline: 16px;
   }
+}
+
+@media screen and (max-width: 767.98px) {
+  .hero {
+    padding-inline: 16px;
+  }
   .headerList {
     flex-wrap: wrap;
     margin-bottom: 0;
